@@ -4,7 +4,12 @@ This repository compiles open access data on scientific publications from Kenya.
 
 Kenlit is in an early stage of development and the data should not be regarded as complete. For further information please see the known issues below.
 
-To download the data in this repository as a single zip file containing csv files click [here]().
+Kenlit is available as the Kenlitr package. Due to its size it is not on CRAN but can be installed from github.
+
+```r
+devtools::install_github("poldham/kenlitr")
+```
+To download the data in this repository as a single 170MB zip file containing all the csv files click [here](https://storage.googleapis.com/impossiblestorage/kenlit.zip).
 
 ## Data Sources
 
@@ -40,4 +45,3 @@ a) Incomplete author affiliation data. 130,581 of the papers in the dataset lack
 b) There were reports on early versions of MAG based on small samples of data (one institution) that not all authors names were reflected in a record. The extent to which this reflects a wider issue or remains an issue in recent updates is unclear. This would require a larger scale validation effort to assess.
 
 c) Counts may vary depending on the data source. This is likely to reflect the use of different editions. 
-
