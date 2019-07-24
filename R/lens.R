@@ -1,0 +1,42 @@
+#' @title lens
+#' @description Lens literature (scholar) data for a search for Kenya in full texts (all fields)
+#' @usage data("lens")
+#' @aliases lens
+#' @format{
+#' \describe{
+#' \item{\code{lens_id}}{character}
+#' \item{\code{languages}}{character}
+#' \item{\code{journal_country}}{character}
+#' \item{\code{issn}}{character}
+#' \item{\code{publisher}}{character}
+#' \item{\code{source_title}}{character}
+#' \item{\code{title}}{character}
+#' \item{\code{fields_of_study}}{character}
+#' \item{\code{date_published}}{character}
+#' \item{\code{publication_year}}{character}
+#' \item{\code{publication_type}}{character}
+#' \item{\code{publication_supplementary_type}}{character}
+#' \item{\code{keywords}}{character}
+#' \item{\code{funding}}{character}
+#' \item{\code{issue_number}}{character}
+#' \item{\code{start_page}}{character}
+#' \item{\code{end_page}}{character}
+#' \item{\code{authors}}{character}
+#' \item{\code{abstract}}{character}
+#' \item{\code{volume}}{character}
+#' \item{\code{mesh_terms}}{character}
+#' \item{\code{chemicals}}{character}
+#' \item{\code{source_urls}}{character}
+#' \item{\code{patent_citation_count}}{character}
+#' \item{\code{pmid}}{character}
+#' \item{\code{doi}}{character}
+#' \item{\code{microsoft_academic_id}}{character}
+#' \item{\code{pmcid}}{character}
+#' \item{\code{references}}{character}
+#' \item{\code{scholarly_citation_count}}{character}
+#' \item{\code{duplicated}}{character}
+#' \item{\code{paperid}}{character}
+#' \item{\code{in_kenya_papers}}{character}
+#' }
+#' }
+"lens"

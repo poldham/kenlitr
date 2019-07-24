@@ -1,0 +1,13 @@
+Package: kenlitr
+Type: Package
+Title: Scientific Literature on Kenya
+Version: 0.1.0
+Authors@R: person("Paul", "Oldham", email = "poldham@oneworldanalytics.com", role = c("aut", "cre"), comment = c(ORCID="0000-0002-1013-4390"))
+Description: An open access dataset of scientific literature on Kenya from Microsoft Academic Graph and the Lens.
+BugReports: https://github.com/poldham/kenlitr/issues
+URL: https://github.com/poldham/kenlitr
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
