@@ -4,7 +4,7 @@ This repository compiles open access data on scientific publications from Kenya.
 
 Kenlit is in an early stage of development and the data should not be regarded as complete. For further information please see the known issues below.
 
-Kenlit is available as the Kenlitr package. Due to its size it is not on CRAN but can be installed from github.
+Kenlit is available for R as the `kenlitr` package. Due to its size it is not on CRAN but can be installed from github.
 
 ```r
 devtools::install_github("poldham/kenlitr")
