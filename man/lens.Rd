@@ -3,7 +3,7 @@
 \docType{data}
 \name{lens}
 \alias{lens}
-\title{lens}
+\title{lens data}
 \format{{
 \describe{
 \item{\code{lens_id}}{character}

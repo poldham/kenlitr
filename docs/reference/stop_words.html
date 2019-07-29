@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fields of Study for Publications From Kenya (MAG) data — fos • kenlitr</title>
+<title>Various lexicons for English stop words — stop_words • kenlitr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,13 @@
 
 
 
-<meta property="og:title" content="Fields of Study for Publications From Kenya (MAG) data — fos" />
+<meta property="og:title" content="Various lexicons for English stop words — stop_words" />
 
-<meta property="og:description" content="Fields of Study linked to publications by Kenyan organisations appearing in Microsoft Academic Graph" />
+<meta property="og:description" content="Copied directly from the tidyvext package stop_words function at
+https://github.com/juliasilge/tidytext/blob/master/R/stop_words.R.
+English stop words from three lexicons, as a data frame.
+The snowball and SMART sets are pulled from the tm package. Note
+that words with non-ASCII characters have been removed." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,46 +118,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fields of Study for Publications From Kenya (MAG) data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poldham/kenlitr/blob/master/R/fos.R'><code>R/fos.R</code></a></small>
-    <div class="hidden name"><code>fos.Rd</code></div>
+    <h1>Various lexicons for English stop words</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poldham/kenlitr/blob/master/R/stop_words.R'><code>R/stop_words.R</code></a></small>
+    <div class="hidden name"><code>stop_words.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fields of Study linked to publications by Kenyan organisations appearing in Microsoft Academic Graph</p>
+    <p>Copied directly from the tidyvext package stop_words function at
+https://github.com/juliasilge/tidytext/blob/master/R/stop_words.R.
+English stop words from three lexicons, as a data frame.
+The snowball and SMART sets are pulled from the tm package. Note
+that words with non-ASCII characters have been removed.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"fos"</span>)</pre>
+    <pre class="usage"><span class='no'>stop_words</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><dl class='dl-horizontal'>
-<dt><code>paperid</code></dt><dd><p>character</p></dd>
-<dt><code>fieldofstudyid</code></dt><dd><p>character</p></dd>
-<dt><code>score</code></dt><dd><p>character</p></dd>
-<dt><code>rankno</code></dt><dd><p>character</p></dd>
-<dt><code>normalizedname</code></dt><dd><p>character</p></dd>
-<dt><code>displayname</code></dt><dd><p>character</p></dd>
-<dt><code>maintype</code></dt><dd><p>character</p></dd>
-<dt><code>main</code></dt><dd><p>character</p></dd>
-<dt><code>type</code></dt><dd><p>character</p></dd>
-<dt><code>level</code></dt><dd><p>character</p></dd>
-<dt><code>papercount</code></dt><dd><p>character</p></dd>
-<dt><code>citationcount</code></dt><dd><p>character</p></dd>
-<dt><code>createddate</code></dt><dd><p>character</p></dd>
-<dt><code>abs_maintype</code></dt><dd><p>character</p></dd>
-<dt><code>white_keep</code></dt><dd><p>character</p></dd>
-<dt><code>gni</code></dt><dd><p>character</p></dd>
-<dt><code>abs_fieldofstudy</code></dt><dd><p>character</p></dd>
-<dt><code>abs_displayname</code></dt><dd><p>character</p></dd>
-<dt><code>abs_combined</code></dt><dd><p>character</p></dd>
-</dl></p>
+    <p>A data frame with 1149 rows and 2 variables:</p><dl class='dl-horizontal'>
+<dt>word</dt><dd><p>An English word</p></dd>
+<dt>lexicon</dt><dd><p>The source of the stop word. Either "onix", "SMART", or "snowball"</p></dd>
+</dl>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Data in this table only refers to fields of study for publications linked to organisations in Kenya. For the wider fields of study see lens_fos.</p>
+    <ul>
+<li><p><a href='http://www.lextek.com/manuals/onix/stopwords1.html'>http://www.lextek.com/manuals/onix/stopwords1.html</a></p></li>
+<li><p><a href='http://www.jmlr.org/papers/volume5/lewis04a/lewis04a.pdf'>http://www.jmlr.org/papers/volume5/lewis04a/lewis04a.pdf</a></p></li>
+<li><p><a href='http://snowball.tartarus.org/algorithms/english/stop.txt'>http://snowball.tartarus.org/algorithms/english/stop.txt</a></p></li>
+</ul>
     
 
   </div>
@@ -163,7 +158,7 @@
       
       <li><a href="#format">Format</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#source">Source</a></li>
           </ul>
 
   </div>

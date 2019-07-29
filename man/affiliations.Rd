@@ -3,7 +3,7 @@
 \docType{data}
 \name{affiliations}
 \alias{affiliations}
-\title{affiliations}
+\title{affiliations data}
 \format{{
 \describe{
 \item{\code{paperid}}{numeric}

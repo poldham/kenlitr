@@ -3,7 +3,7 @@
 \docType{data}
 \name{texts}
 \alias{texts}
-\title{Texts for text mining and Machine Learning}
+\title{Texts for text mining and Machine Learning  (data)}
 \format{{
 \describe{
 \item{\code{id}}{character}

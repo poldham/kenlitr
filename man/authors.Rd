@@ -3,7 +3,7 @@
 \docType{data}
 \name{authors}
 \alias{authors}
-\title{authors}
+\title{authors data}
 \format{{
 \describe{
 \item{\code{authorid}}{numeric}

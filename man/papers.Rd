@@ -3,7 +3,7 @@
 \docType{data}
 \name{papers}
 \alias{papers}
-\title{papers}
+\title{papers data}
 \format{{
 \describe{
 \item{\code{affiliationid}}{character}

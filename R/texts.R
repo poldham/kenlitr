@@ -1,4 +1,4 @@
-#' @title Texts for text mining and Machine Learning
+#' @title Texts for text mining and Machine Learning  (data)
 #' @description A dataset that combines the title and abstracts from the lens dataset for text mining and ML. 
 #' @details  The titles and abstracts are divided into separate files and then
 #'   joined. A unique id is constructed from the paperid and row number

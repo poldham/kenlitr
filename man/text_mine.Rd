@@ -17,6 +17,8 @@ text_mine(x, col = NULL, token = NULL, n_gram = NULL, lower = TRUE,
 
 \item{n_gram}{Number of words to split as tokens e.g 2, numeric}
 
+\item{lower}{convert text to lower case}
+
 \item{top}{the number of items to include, numeric}
 
 \item{title}{chart title, quoted}
@@ -24,6 +26,8 @@ text_mine(x, col = NULL, token = NULL, n_gram = NULL, lower = TRUE,
 \item{x_label}{chart x axis label, quoted}
 
 \item{y_label}{chart y axis label, quoted}
+
+\item{viz}{pass to ggplot to create a stacked bar chart (default is NULL)}
 }
 \value{
 plot

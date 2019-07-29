@@ -4,7 +4,7 @@
 \name{fos}
 \alias{fos}
 \alias{fos_kenya}
-\title{Fields of Study for Publications From Kenya (MAG)}
+\title{Fields of Study for Publications From Kenya (MAG) data}
 \format{{
 \describe{
 \item{\code{paperid}}{character}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fields of Study for Publications From Kenya (MAG) data — fos • kenlitr</title>
+<title>Kenya places — kenya_places • kenlitr</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Fields of Study for Publications From Kenya (MAG) data — fos" />
+<meta property="og:title" content="Kenya places — kenya_places" />
 
-<meta property="og:description" content="Fields of Study linked to publications by Kenyan organisations appearing in Microsoft Academic Graph" />
+<meta property="og:description" content="The geonames dataset for Kenya listing 29,598 place names in Kenya with coordinates." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -114,46 +114,45 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fields of Study for Publications From Kenya (MAG) data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/poldham/kenlitr/blob/master/R/fos.R'><code>R/fos.R</code></a></small>
-    <div class="hidden name"><code>fos.Rd</code></div>
+    <h1>Kenya places</h1>
+    <small class="dont-index">Source: <a href='https://github.com/poldham/kenlitr/blob/master/R/kenya_places.R'><code>R/kenya_places.R</code></a></small>
+    <div class="hidden name"><code>kenya_places.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fields of Study linked to publications by Kenyan organisations appearing in Microsoft Academic Graph</p>
+    <p>The geonames dataset for Kenya listing 29,598 place names in Kenya with coordinates.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"fos"</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"kenya_places"</span>)</pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p><dl class='dl-horizontal'>
-<dt><code>paperid</code></dt><dd><p>character</p></dd>
-<dt><code>fieldofstudyid</code></dt><dd><p>character</p></dd>
-<dt><code>score</code></dt><dd><p>character</p></dd>
-<dt><code>rankno</code></dt><dd><p>character</p></dd>
-<dt><code>normalizedname</code></dt><dd><p>character</p></dd>
-<dt><code>displayname</code></dt><dd><p>character</p></dd>
-<dt><code>maintype</code></dt><dd><p>character</p></dd>
-<dt><code>main</code></dt><dd><p>character</p></dd>
-<dt><code>type</code></dt><dd><p>character</p></dd>
-<dt><code>level</code></dt><dd><p>character</p></dd>
-<dt><code>papercount</code></dt><dd><p>character</p></dd>
-<dt><code>citationcount</code></dt><dd><p>character</p></dd>
-<dt><code>createddate</code></dt><dd><p>character</p></dd>
-<dt><code>abs_maintype</code></dt><dd><p>character</p></dd>
-<dt><code>white_keep</code></dt><dd><p>character</p></dd>
-<dt><code>gni</code></dt><dd><p>character</p></dd>
-<dt><code>abs_fieldofstudy</code></dt><dd><p>character</p></dd>
-<dt><code>abs_displayname</code></dt><dd><p>character</p></dd>
-<dt><code>abs_combined</code></dt><dd><p>character</p></dd>
+    <p>A data frame with 29598 observations on the following 21 variables.
+<dl class='dl-horizontal'>
+<dt><code>geonameid</code></dt><dd><p>a character vector</p></dd>
+<dt><code>name</code></dt><dd><p>a character vector</p></dd>
+<dt><code>asciiname</code></dt><dd><p>a character vector</p></dd>
+<dt><code>alternatenames</code></dt><dd><p>a character vector</p></dd>
+<dt><code>latitude</code></dt><dd><p>a character vector</p></dd>
+<dt><code>longitude</code></dt><dd><p>a character vector</p></dd>
+<dt><code>feature_full</code></dt><dd><p>a character vector</p></dd>
+<dt><code>feature_class</code></dt><dd><p>a character vector</p></dd>
+<dt><code>feature_code</code></dt><dd><p>a character vector</p></dd>
+<dt><code>iso</code></dt><dd><p>a character vector</p></dd>
+<dt><code>cc2</code></dt><dd><p>a character vector</p></dd>
+<dt><code>admin1_code</code></dt><dd><p>a character vector</p></dd>
+<dt><code>admin2_code</code></dt><dd><p>a character vector</p></dd>
+<dt><code>admin3_code</code></dt><dd><p>a character vector</p></dd>
+<dt><code>admin4_code</code></dt><dd><p>a character vector</p></dd>
+<dt><code>population</code></dt><dd><p>a character vector</p></dd>
+<dt><code>elevation</code></dt><dd><p>a character vector</p></dd>
+<dt><code>dem</code></dt><dd><p>a numeric vector</p></dd>
+<dt><code>timezone</code></dt><dd><p>a character vector</p></dd>
+<dt><code>modification_date</code></dt><dd><p>a Date</p></dd>
+<dt><code>download_date</code></dt><dd><p>a Date</p></dd>
 </dl></p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Data in this table only refers to fields of study for publications linked to organisations in Kenya. For the wider fields of study see lens_fos.</p>
     
 
   </div>
@@ -162,8 +161,6 @@
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-
-      <li><a href="#details">Details</a></li>
           </ul>
 
   </div>

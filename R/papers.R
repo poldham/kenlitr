@@ -1,4 +1,4 @@
-#' @title papers
+#' @title papers data
 #' @description Microsoft Academic Graph papers table
 #' @usage data("papers")
 #' @aliases papers

@@ -4,6 +4,8 @@
 #' @param col the column to be text mined, quoted
 #' @param token either words or ngrams. If ngrams set n_gram value, character
 #' @param n_gram Number of words to split as tokens e.g 2, numeric
+#' @param lower convert text to lower case
+#' @param viz pass to ggplot to create a stacked bar chart (default is NULL)
 #' @param top the number of items to include, numeric
 #' @param title chart title, quoted
 #' @param x_label chart x axis label, quoted
@@ -11,7 +13,28 @@
 #' @details The text mining functions are adapted from Silge & Robinson `Text Mining with R``
 #' @return plot
 #' @export
-#'
+#' @importFrom dplyr select
+#' @importFrom tidyr drop_na
+#' @importFrom dplyr mutate
+#' @importFrom dplyr count
+#' @importFrom dplyr top_n
+#' @importFrom dplyr filter
+#' @importFrom dplyr group_by
+#' @importFrom tidyr separate
+#' @importFrom tidyr separate_rows
+#' @importFrom tidytext unnest_tokens
+#' @importFrom tidyr unite
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 geom_bar
+#' @importFrom ggplot2 coord_flip
+#' @importFrom ggplot2 theme
+#' @importFrom ggplot2 labs
+#' @importFrom ggplot2 aes
+#' @importFrom ggthemes scale_color_tableau
+#' @importFrom stats reorder
+#' @importFrom stringr str_trim
+#' @importFrom stringr str_to_lower
+#' @importFrom rlang .data
 #' @examples \dontrun{
 #' keywords_rank <- text_mine(lens, col = "keywords", top = 20) %>% print()
 #' text_mine(lens, col = "keywords", top = 20, viz = TRUE)
@@ -34,7 +57,7 @@ text_mine <- function(x, col = NULL, token = NULL, n_gram = NULL, lower = TRUE, 
   # and friends such as {{ }}
   
   x <- x %>% 
-    dplyr::select(.data[[col]]) %>%
+    select(.data[[col]]) %>%
     tidyr::drop_na(.data[[col]])
   
   # logical test to pass to if statement
@@ -49,11 +72,11 @@ text_mine <- function(x, col = NULL, token = NULL, n_gram = NULL, lower = TRUE, 
   if(test_key == TRUE || test_mesh == TRUE){
   out <- x %>% 
     tidyr::separate_rows(.data[[col]], sep = ";") %>% 
-    dplyr::mutate(terms = stringr::str_trim(.data[[col]], side = "both")) %>% 
-    dplyr::mutate(terms = stringr::str_to_lower(terms)) %>% 
-    dplyr::select(terms) %>% 
-    dplyr::count(terms, sort = "TRUE") %>% 
-    dplyr::top_n(n = top)
+    mutate(terms = str_trim(.data[[col]], side = "both")) %>% 
+    mutate(terms = str_to_lower(terms)) %>% 
+    select(terms) %>% 
+    count(terms, sort = "TRUE") %>% 
+    top_n(n = top)
   } else if(!is.null(n_gram)) {
 
    # for titles or abstracts provide options
@@ -62,23 +85,23 @@ text_mine <- function(x, col = NULL, token = NULL, n_gram = NULL, lower = TRUE, 
    # stop_words are obligatory in code below. Make optional with arg. 
     
     out <- x %>%
-     tidytext::unnest_tokens(terms, input = .data[[col]], token = token, n = n_gram, to_lower = lower) %>%
-     tidyr::separate(terms, c("word1", "word2"), sep = " ", extra = "drop") %>%
-     dplyr::mutate(word1 = stringr::str_trim(word1, side = "both")) %>%
-     dplyr::mutate(word2 = stringr::str_trim(word2, side = "both")) %>%
-     dplyr::filter(!word1 %in% tidytext::stop_words$word) %>%
-     dplyr::filter(!word2 %in% tidytext::stop_words$word) %>%
+     unnest_tokens(terms, input = .data[[col]], token = token, n = n_gram, to_lower = lower) %>%
+     separate(terms, c("word1", "word2"), sep = " ", extra = "drop") %>%
+     mutate(word1 = str_trim(word1, side = "both")) %>%
+     mutate(word2 = str_trim(word2, side = "both")) %>%
+     filter(!word1 %in% kenlitr::stop_words$word) %>%
+     filter(!word2 %in% kenlitr::stop_words$word) %>%
      tidyr::unite(terms, word1, word2, sep = " ") %>%
-     dplyr::count(terms, sort = TRUE) %>%
-     dplyr::top_n(n = top)
+     count(terms, sort = TRUE) %>%
+     top_n(n = top)
 
    out
   } else if(token == "words"){
    out <- x %>% 
-     tidytext::unnest_tokens(terms, input = .data[[col]], token = token, to_lower = lower) %>% 
-     dplyr::filter(!terms %in% tidytext::stop_words$word) %>% 
-     dplyr::count(terms, sort = TRUE)  %>%
-     dplyr::top_n(n = top)
+     unnest_tokens(terms, input = .data[[col]], token = token, to_lower = lower) %>% 
+     filter(!terms %in% kenlitr::stop_words$word) %>% 
+     count(terms, sort = TRUE)  %>%
+     top_n(n = top)
  }
   
 # option, pass to stacked_bar() fun rather than repeating code? 
@@ -86,12 +109,12 @@ text_mine <- function(x, col = NULL, token = NULL, n_gram = NULL, lower = TRUE, 
   
  if(!is.null(viz)){
       out %>%
-      ggplot2::ggplot(., aes(x = reorder(terms, n), y = n, fill = terms)) +
-      ggplot2::geom_bar(stat = "identity") +
-      ggplot2::coord_flip() +
-      ggthemes::scale_color_tableau("Tableau 20") +
-      ggplot2::theme(legend.position="none") +
-      ggplot2::labs(title = title, x = x_label, y = y_label)
+      ggplot(., aes(x = reorder(terms, n), y = n, fill = terms)) +
+      geom_bar(stat = "identity") +
+      coord_flip() +
+      scale_color_tableau("Tableau 20") +
+      theme(legend.position="none") +
+      labs(title = title, x = x_label, y = y_label)
 
     } else { out }
      
