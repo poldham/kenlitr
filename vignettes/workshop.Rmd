@@ -146,3 +146,5 @@ knitr::include_graphics("~/vignettes/images/python_demo.png")
 
 Note that the console is now showing that it is running Python with `>>>` rather than `>` for R. 
 
+Save python scripts as normal.
+
