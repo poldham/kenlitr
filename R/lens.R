@@ -1,7 +1,6 @@
-#' @title lens
+#' @title lens data
 #' @description Lens literature (scholar) data for a search for Kenya in full texts (all fields)
 #' @usage data("lens")
-#' @aliases lens
 #' @format{
 #' \describe{
 #' \item{\code{lens_id}}{character}
