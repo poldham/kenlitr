@@ -3,7 +3,6 @@
 \docType{data}
 \name{lens_fos}
 \alias{lens_fos}
-\alias{for_kenya}
 \title{Fields of Study for Publications about Kenya (Lens data)}
 \format{{
 \describe{
@@ -18,7 +17,7 @@
 }
 }}
 \usage{
-data("fos")
+data("lens_fos")
 }
 \description{
 Fields of Study linked to publications mentioning Kenya from the Lens

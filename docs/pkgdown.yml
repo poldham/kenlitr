@@ -1,5 +1,7 @@
 pandoc: '2.5'
 pkgdown: 1.3.0
 pkgdown_sha: ~
-articles: []
+articles:
+  creating_kenlit: creating_kenlit.html
+  workshop: workshop.html
 

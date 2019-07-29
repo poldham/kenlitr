@@ -1,8 +1,8 @@
 #' @title Fields of Study for Publications about Kenya (Lens data)
 #' @description Fields of Study linked to publications mentioning Kenya from the Lens
 #' @details  Data in this table only refers to fields of study for publications that are mainly from outside Kenya. For publications only from Kenyan organisations see fos.
-#' @usage data("fos")
-#' @aliases for_kenya
+#' @usage data("lens_fos")
+#' @aliases lens_fos
 #' @format{
 #' \describe{
 #' \item{\code{lens_id}}{character}

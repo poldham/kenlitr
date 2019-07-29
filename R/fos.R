@@ -2,7 +2,7 @@
 #' @description Fields of Study linked to publications by Kenyan organisations appearing in Microsoft Academic Graph
 #' @details  Data in this table only refers to fields of study for publications linked to organisations in Kenya. For the wider fields of study see lens_fos.
 #' @usage data("fos")
-#' @aliases for_kenya
+#' @aliases fos_kenya
 #' @format{
 #' \describe{
 #' \item{\code{paperid}}{character}

@@ -3,7 +3,7 @@
 \docType{data}
 \name{fos}
 \alias{fos}
-\alias{for_kenya}
+\alias{fos_kenya}
 \title{Fields of Study for Publications From Kenya (MAG)}
 \format{{
 \describe{
