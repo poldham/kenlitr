@@ -45,3 +45,7 @@ a) Incomplete author affiliation data. 130,581 of the papers in the dataset lack
 b) There were reports on early versions of MAG based on small samples of data (one institution) that not all authors names were reflected in a record. The extent to which this reflects a wider issue or remains an issue in recent updates is unclear. This would require a larger scale validation effort to assess.
 
 c) Counts may vary depending on the data source. This is likely to reflect the use of different editions. 
+
+### Contributing
+
+Contributions to Kenlit are welcome. Kenlit is released with a [Contributor Code of Conduct](https://github.com/poldham/kenlitr/blob/master/CODE_OF_CONDUCT.md) and when contributing you agree to be bound by its terms. 

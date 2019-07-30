@@ -138,7 +138,7 @@
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># import the MAG affiliations table</span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(readr)</a>
-<a class="sourceLine" id="cb1-3" title="3">affiliations &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/readr/topics/read_delim">read_delim</a></span>(<span class="st">"Affiliations.txt"</span>, <span class="dt">col_names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"affiliationid"</span>, <span class="st">"rankno"</span>,</a>
+<a class="sourceLine" id="cb1-3" title="3">affiliations &lt;-<span class="st"> </span><span class="kw"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_delim</a></span>(<span class="st">"Affiliations.txt"</span>, <span class="dt">col_names =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"affiliationid"</span>, <span class="st">"rankno"</span>,</a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="st">"normalizedname"</span>, </a>
 <a class="sourceLine" id="cb1-5" title="5"><span class="st">"displayname"</span>, </a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="st">"grid_id"</span>,</a>
@@ -151,7 +151,7 @@
 <a class="sourceLine" id="cb1-13" title="13"></a>
 <a class="sourceLine" id="cb1-14" title="14"><span class="co"># import GRID name and address table</span></a>
 <a class="sourceLine" id="cb1-15" title="15"></a>
-<a class="sourceLine" id="cb1-16" title="16">grid_name_address &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/readr/topics/read_delim">read_csv</a></span>(<span class="st">"~/grid/grid_name_address.csv"</span>)</a>
+<a class="sourceLine" id="cb1-16" title="16">grid_name_address &lt;-<span class="st"> </span><span class="kw"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv</a></span>(<span class="st">"~/grid/grid_name_address.csv"</span>)</a>
 <a class="sourceLine" id="cb1-17" title="17"></a>
 <a class="sourceLine" id="cb1-18" title="18"><span class="co"># join the tables retaining all he data in affiliations and </span></a>
 <a class="sourceLine" id="cb1-19" title="19"><span class="co"># adding the GRID data where available</span></a>
@@ -159,7 +159,7 @@
 <a class="sourceLine" id="cb1-21" title="21"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>email_address, <span class="op">-</span>line_<span class="dv">1</span>, <span class="op">-</span>line_<span class="dv">2</span>, <span class="op">-</span><span class="st"> </span>line_<span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb1-22" title="22"></a>
 <a class="sourceLine" id="cb1-23" title="23"><span class="co"># save to disk</span></a>
-<a class="sourceLine" id="cb1-24" title="24"><span class="kw"><a href="https://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(affiliations_grid, <span class="st">"affiliations_grid.csv"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-24" title="24"><span class="kw"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span>(affiliations_grid, <span class="st">"affiliations_grid.csv"</span>)</a></code></pre></div>
 <p>On the cluster the next step was to create the table joins to retrieve the publications linked to the affiliations using the <code>affiliationid</code> column,</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sparklyr)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
@@ -167,20 +167,20 @@
 <a class="sourceLine" id="cb2-4" title="4"><span class="co"># on the cluster</span></a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="co"># filter the data to Kenya </span></a>
 <a class="sourceLine" id="cb2-6" title="6"></a>
-<a class="sourceLine" id="cb2-7" title="7">kenya &lt;-<span class="st"> </span>affiliations_grid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(country_code <span class="op">==</span><span class="st"> "KE"</span>)</a>
+<a class="sourceLine" id="cb2-7" title="7">kenya &lt;-<span class="st"> </span>affiliations_grid <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(country_code <span class="op">==</span><span class="st"> "KE"</span>)</a>
 <a class="sourceLine" id="cb2-8" title="8"></a>
 <a class="sourceLine" id="cb2-9" title="9"><span class="co"># join to the affiliation paperss and paper tables retaining only shared data (using inner join)</span></a>
 <a class="sourceLine" id="cb2-10" title="10"></a>
-<a class="sourceLine" id="cb2-11" title="11">kenya_affiliations_papers &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/join">inner_join</a></span>(kenya, affiliations_papers, <span class="dt">by =</span> <span class="st">"affiliationid"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/join">inner_join</a></span>(., papers, <span class="dt">by =</span> <span class="st">"paperid"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-11" title="11">kenya_affiliations_papers &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(kenya, affiliations_papers, <span class="dt">by =</span> <span class="st">"affiliationid"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(., papers, <span class="dt">by =</span> <span class="st">"paperid"</span>)</a></code></pre></div>
 <p>We then follow the same procedure for the fields of study and the authors</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># join the authors to to affiliation data</span></a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3">kenya_papers_authors &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/join">inner_join</a></span>(kenya_affiliations_papers, authors, <span class="dt">by =</span> <span class="st">"authorid"</span>)</a>
+<a class="sourceLine" id="cb3-3" title="3">kenya_papers_authors &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(kenya_affiliations_papers, authors, <span class="dt">by =</span> <span class="st">"authorid"</span>)</a>
 <a class="sourceLine" id="cb3-4" title="4"></a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co"># join the fields of study table</span></a>
 <a class="sourceLine" id="cb3-6" title="6"></a>
-<a class="sourceLine" id="cb3-7" title="7">kenya_fosid &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/join">inner_join</a></span>(kenya_affiliations_papers_unique, fos_papers, <span class="dt">by =</span> <span class="st">"paperid"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-7" title="7">kenya_fosid &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(kenya_affiliations_papers_unique, fos_papers, <span class="dt">by =</span> <span class="st">"paperid"</span>)</a></code></pre></div>
 <p>The files are then written to the Dababricks cluster file system (DBFS) in parquet format, downloaded using the Databricks Client in the terminal and imported to write to a csv file.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># on the clusterwrite to the Data Bricks file system</span></a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/sparklyr/topics/spark_write_table">spark_write_table</a></span>(kenya_papers_authors, <span class="st">"kenya_papers_authors_spark_tbl"</span>)</a></code></pre></div>
@@ -191,7 +191,7 @@
 <a class="sourceLine" id="cb5-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/sparklyr/topics/spark_read_parquet">spark_read_parquet</a></span>(sc, <span class="st">"kenya_papers_authors"</span>, <span class="st">"kenya_papers_authors_spark_tbl"</span>)</a>
 <a class="sourceLine" id="cb5-5" title="5"></a>
 <a class="sourceLine" id="cb5-6" title="6"><span class="co"># create a table</span></a>
-<a class="sourceLine" id="cb5-7" title="7">kenya_authors_tbl &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/tbl">tbl</a></span>(sc, <span class="st">"kenya_papers_authors"</span>)</a>
+<a class="sourceLine" id="cb5-7" title="7">kenya_authors_tbl &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tbl.html">tbl</a></span>(sc, <span class="st">"kenya_papers_authors"</span>)</a>
 <a class="sourceLine" id="cb5-8" title="8"></a>
 <a class="sourceLine" id="cb5-9" title="9"></a>
 <a class="sourceLine" id="cb5-10" title="10"><span class="co"># collect into an object in the local environment (not as a Spark table)</span></a>
@@ -199,7 +199,7 @@
 <a class="sourceLine" id="cb5-12" title="12"></a>
 <a class="sourceLine" id="cb5-13" title="13"><span class="co"># write to file as normal</span></a>
 <a class="sourceLine" id="cb5-14" title="14"></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/readr/topics/write_delim">write_csv</a></span>(kenya_authors, <span class="st">"kenya_authors.csv"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb5-15" title="15"><span class="kw"><a href="https://readr.tidyverse.org/reference/write_delim.html">write_csv</a></span>(kenya_authors, <span class="st">"kenya_authors.csv"</span>)</a></code></pre></div>
 <p>In kenlit, the filenames are simplified to authors, affiliations, papers and fos.</p>
 </div>
 <div id="adding-data-to-the-lens-dataset" class="section level3">
