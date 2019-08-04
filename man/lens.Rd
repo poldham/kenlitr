@@ -3,7 +3,7 @@
 \docType{data}
 \name{lens}
 \alias{lens}
-\title{lens data}
+\title{lens data for Kenya (data)}
 \format{{
 \describe{
 \item{\code{lens_id}}{character}

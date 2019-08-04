@@ -56,7 +56,7 @@
       <a href="../articles/creating_kenlit.html">Creating Kenlit</a>
     </li>
     <li>
-      <a href="../articles/text_mining.html">Untitled</a>
+      <a href="../articles/text_mining.html">Text Mining</a>
     </li>
     <li>
       <a href="../articles/workshop.html">Nairobi Workshop</a>
@@ -106,7 +106,7 @@
 <h3 class="hasAnchor">
 <a href="#the-lens" class="anchor"></a>The Lens</h3>
 <p>The Lens provides access to data from over 190 million scientific publications. To create the general data for Kenya (see lens.csv or lens.rda) a simple search for the word Kenya was carried out across all fields in the Lens. At the time when Kenlit was created this led to 176,335 results. This had increased to 191,952 as of the end of July 2019. We can see the search results from July 29th 2019 below.</p>
-<p><img src="../../vignettes/images/kenya_lens.png"><!-- --></p>
+<p><img src="images/kenya_lens.png" width="726"></p>
 <p>The Lens includes data from a range of different sources inclucing Microsoft Academic Graph, Crossref, PubMed, Core and PubMed Central. We can clearly see above that the dominant data source is Microsoft Academic Graph.</p>
 <p>This search of the Lens is <em>noisy</em> because it will capture irrelevant results.</p>
 <ol style="list-style-type: decimal">
@@ -115,7 +115,7 @@
 </ol>
 <p>For the purpose of creating Kenlit this is fine as the aim is to capture the universe of things that come from or refer to Kenya. However, in later analysis it will be important to clean this data, for example by filtering out the name Kenya in author fields.</p>
 <p>Data from the Lens presently has the important limitation that the author affiliation data (Institutions) are not avaialble for download with the other data. However, investigation of the affiliation data reveals additional issues as can be seen in the image below.</p>
-<p><img src="../../vignettes/images/kenya_institutions.png"><!-- --></p>
+<p><img src="images/kenya_institutions.png" width="671"></p>
 <p>In considering this image note that the affiliation data, which comes from Microsoft Academic Graph, is limited in its coverarge producing the problem of missing data. Also note that in the Lens and in Kenlit, the affiliation data is limited to those organisations that appear in the Global Research Identifier Database (GRID). GRID addresses the problem of variations in the name of institutions but presently covers 99,000 organisations worldwide and is a work in progress.</p>
 <p>So for affiliation data we have two sources of missingness:</p>
 <ol style="list-style-type: decimal">

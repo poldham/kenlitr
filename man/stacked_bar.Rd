@@ -27,5 +27,6 @@ plot
 Draw a vertically stacked bar chart with ggplot2
 }
 \examples{
-\dontrun{stacked_bar(affiliations, col = "normalizedname", top = 10, title = "Papers by Affiliation", x_label = "Affiliation", y_label = "Publication Count")}
+\dontrun{stacked_bar(affiliations, col = "normalizedname", top = 10, 
+title = "Papers by Affiliation", x_label = "Affiliation", y_label = "Publication Count")}
 }

@@ -1,0 +1,226 @@
+---
+title: "Text Mining"
+author: "Paul Oldham"
+date: "30/07/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+library(tidyverse)
+```
+
+<!--- add in fields of study to the text_mine function--->
+<!--- make sure texts are available for text mining--->
+
+Text mining involves extracting useful information from text fields. Text mining is increasingly tied in with machine learning approaches using tools such as spaCy. In this session we will demonstrate some basic approaches to text mining using the `tidytext` package with R. If you want to learn more about text mining in R [Text Mining with R](https://www.tidytextmining.com/) by [Julia Silge](https://juliasilge.com/) and [David Robinson](http://varianceexplained.org/about/) is strongly recommended. For Python fans it doesn't get much better than [SpaCy](https://spacy.io/) by [Matthew Honnibal](https://twitter.com/honnibal) and [Ines Montani](https://twitter.com/_inesmontani) at Explosion AI. You may also want to try [quanteda](https://quanteda.io/) and [spacyr](https://spacyr.quanteda.io/articles/using_spacyr.html) from Ken Benoit and Kohei Watanabe at the LSE. 
+
+The Kenlit package contains the following resources for text mining and a basic function `text_mine()` to help you get started. 
+
+The main fields available for text mining in Kenlit are
+
+1. Keywords
+2. Fields of Study (fos)
+3. Titles
+4. Abstracts
+5. MeSH Terms (Medical Subject Headings)
+
+You will find examples using these fields in the documentation for the `text_mine()` function. Under the hood the `text_mine()` function is powered by the `tidytext` package. The `kenlitr::texts` dataset combines the title and abstract fields into one data set for text mining and machine learning. 
+
+Let's take a look at the keywords first. 
+
+```{r showkeywords, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+kenlitr::lens %>% 
+  select(keywords) %>% 
+  drop_na() %>% 
+  head()
+```
+
+We can see that many records have keywords that are grouped together with ";" as the separator. We can also see that athre are mixed cases. What we want to do is
+
+1. Separate out the keywords and phrases onto their own row
+2. Regularise the case to lower so that they will count up correctly (Education and education will match)
+
+The `text_mine` function will do that for us.
+
+```{r}
+kenlitr::lens %>% 
+kenlitr::text_mine(., col = "keywords", top = 20) %>% 
+  head(20)
+```
+
+We now have a much clearer idea of the keywords used by authors. We can use this data to do things such as refining our search. We can see that health topics such as the HIV and malaria along with demographic factors are prominent in the results. Possibly the specialisit Medical Subject Headings (MeSH) terms will give us a clearer idea.
+
+```{r}
+kenlitr::lens %>% 
+kenlitr::text_mine(., col = "mesh_terms", top = 20) %>% 
+  head(20)
+```
+
+The top terms are not wildly informative except that we learn that in the health field there is a stronger focus on females than males. Adolescents are also prominent along with children and preschool children. 
+
+We could use one or more of these terms to filter the dataset. One way to do this is to identify all of the records containing the term Female or female in the mesh_terms and then filtering the dataset down to only those records. Here we just show the titles. 
+
+```{r meshtitles, warning=FALSE, message=FALSE}
+library(dplyr)
+library(stringr)
+kenlitr::lens %>% 
+  mutate(female_health = str_detect(mesh_terms, "Female|female")) %>% 
+  filter(female_health == TRUE) %>% 
+  select(title) %>% 
+  head(20)
+```
+
+A quick review of the titles tells us that the term female is being used both to refer to humans and to animals. So, we would probably want to filter again. We won't go there now but we can see how we can start to use the results of keyword analysis to refine the data to subjects of interest and drill down into the data.
+
+### Title and Abstract Fields
+
+The main body of texts that are normally available to us are found in the titles and abstracts. The `kenlitr::texts` table extracts these fields from the `lens` table to make them easier to text mine. Note that because of their size (276,998 rows) this can take some time to do. We will focus here on the titles as the quickest to return results. We will also visualize these results by setting `viz = TRUE`.
+
+```{r titles}
+kenlitr::lens %>% 
+kenlitr::text_mine(., col = "title", top = 20, token = "words", title = "Top Terms in Title", x_label = "Terms", y_label = "Publication Count", viz = TRUE)
+```
+
+Individual works like this on their own are not hugely informative. Note that the use of the stacked bar chart for exploratory analysis gives us an idea but the term kenya is so dominant it is hard to gain a sense of proportion. We would want I think to exclude Kenya for a clearer view here. We do however see that management and development appear promimently along with health, HIV and references to counties and districts which hints at geographic information in this data. 
+
+We can try to improve the information content by parsing this data into multi-word phrases (ngrams). In general, from past experience, two word phrases are the most informative. 
+
+Here we will use the combined titles and abstracts. Note that this can take some time to run. 
+
+```{r}
+kenlitr::texts %>% 
+kenlitr::text_mine(., col = "text", top = 20, token = "ngrams", n_gram = 2, title = "Top Ngrams in Titles & Abstracts", x_label = "Terms", y_label = "Publication Count", viz = TRUE)
+```
+
+This data reveals that we have some apparent noise that we would like to filter out such as "95 ci" and "de la" ("of the" in Spanish).
+
+### Create Sentences
+
+We take the texts data and convert into sentences (to pass to spaCy). What we want to know is which sentences contain a reference to a place. We will add a sentence id column that we will join with the doc_id column to make matching the precise sentence containing a term easier later on (otherwise we will identify documents not sentences). The separator when uniting the doc_id and sentence ids is automatically and underscore using `tidyr::unite()`. The original doc_id field will disappear. At a later stage we will use dplyr::separate to get back to the original document id
+
+```{r eval=TRUE}
+library(tidytext)
+sentences <- kenlitr::texts %>% 
+  unnest_tokens(text, text, token = "sentences", to_lower = FALSE) %>% 
+  add_column(sent_id = 1:nrow(.)) %>% 
+  unite(doc_id, c("doc_id", "sent_id"))
+```
+
+
+```{r eval=FALSE, echo=FALSE}
+save(sentences, file = "sentences.rda", compress = "xz")
+```
+
+We will use the python library spaCy in the R package `spacyr` to extract nounphrases from the kenya_places data.frame.
+
+To install spacyr on your system follow the instructions at [https://github.com/quanteda/spacyr](https://github.com/quanteda/spacyr). It can be a little bit involved but is worth it. 
+
+```{r spacynounphrase, eval=TRUE}
+library(spacyr)
+spacyr::spacy_initialize(model = "en_core_web_sm")
+
+# spacyr expects TIF compliant data frame consisting of doc_id and text column
+# use select to selct and rename
+kenya_match <- kenlitr::kenya_places %>% 
+  select(doc_id = geonameid, text = asciiname)
+
+# extract nounphrases
+kenya_match <- spacy_extract_nounphrases(kenya_match, output = "data.frame") %>% 
+  rename(geonameid = doc_id)
+```
+
+This identified 28,591 root terms from the original data frame containing 29,598 rows.
+
+Let's take a look at the top ranking names. We will also do some tidying up to remove the term Kenya (as it defines the dataset) and terms that are two characters or less as these will commmonly generate noise. 
+
+<!---Note that we could lose mount kenya this way but Mount will show up as the root phrase elsewhere, left as is--->
+
+```{r eval=TRUE}
+places_root <- kenya_match %>% 
+  count(root_text, sort = TRUE) %>% 
+  mutate(nchar = nchar(root_text)) %>% 
+  filter(nchar > 2) %>% 
+  mutate(root_text = str_trim(root_text, side = "both")) %>% 
+  filter(root_text != "Kenya") 
+  
+places_root
+```
+
+```{r echo=FALSE, eval=FALSE}
+save(places_root, file = "places_root.rda", compress = "xz")
+```
+
+If we try and match 16000 terms against 1 million sentences in some kind of loop in R it will take a very long time. An alternative way forward is to compare the noun phrases we just created against a word list. That way we will know which sentences contain a candidate place names. Because we want to identify place names that are proper names we will change the default to_lower from TRUE to FALSE. We do not need to specify the tokens argument because the default is `words`. We then create a new column called `places_root` to mark up the matches before filtering to only those that match.
+
+```{r eval=FALSE}
+sentences_words <- sentences %>% 
+  unnest_tokens(text, text, to_lower = FALSE) %>% # maintain uppper case
+  mutate(places_root = .$text %in% places_root$root_text) %>% # compare using %in%
+  filter(places_root == TRUE) # filter to TRUE matches
+```
+
+We have now reduced out 1.1 million sentences to 452,066 references to 149,138 of our places roots for further analysis (based on `sentences_words %>% count(doc_id)`). We now know two important things that we didn't know before:
+
+1. We know that 149,138 sentences contain root terms that are candidates for place names.
+2. We know that the remaining sentences are FALSE in terms of these root terms. 
+
+For moving to machine learning approaches this means we have the basis for TRUE/FALSE labelled datasets for training and evaluation. 
+
+However, when we take a look at the root terms we can see that terms such as Army or World that appear in place names in Kenya are not necessarily going to result in valid places (e.g. Kenya's Army, Kenyan Army etc.).
+
+```{r eval=FALSE}
+sentences_words
+```
+
+At this juncture lets mark up the sentences table as TRUE or FALSE. Here we use the doc_id in each table as the basis for the match (many docs contain more than one of our places root terms and so we want to reduce them to individual sentences).
+
+```{r eval=FALSE}
+sentences <- sentences %>% 
+  mutate(places_root = .$doc_id %in% sentences_words$doc_id)
+sentences
+```
+
+```{r eval=FALSE, echo=FALSE}
+save(sentences, file = "sentences.rda")
+```
+
+We can see in the print out of the top ten rows that the last result (which matched on Kakamega and separately matched on Forest) refers to a valid place. However, there will be other sentences where the match is a false positive. 
+
+<!--- In the rwanda match case this may need to be rerun with word boundaries--->
+
+```{r eval=FALSE}
+sentences_true <- sentences %>% 
+  filter(places_root == TRUE)
+
+# create a false label set with the same number of rows as the true set for use in training and evaluation
+sentences_false <- sentences %>% 
+  filter(places_root == FALSE) %>% 
+  .[1:259969,]
+```
+
+Inspect the true version
+
+```{r eval=FALSE}
+sentences_true
+```
+
+```{r eval=FALSE}
+# write the two sets of sentences to json as a single labelled object to read in to Spacy for model building.
+# spacy (prodigy) is expecting data labelled under "answer": "accept" or "reject" in json format (see below) so let's adjust the column names
+kenya_spacy <- bind_rows(sentences_true, sentences_false) %>% 
+  rename(answer = places_root) %>% 
+  mutate(answer = str_replace(answer, "TRUE", "accept")) %>% 
+  mutate(answer = str_replace(answer, "FALSE", "reject"))
+
+# save to R for reference
+#save(kenya_spacy, file = "kenya_spacy.rda", compress = "xz")
+
+# write to json lines (jsonl) as spacy preferred format and cross check
+jsonlite::stream_out(kenya_spacy, file("kenya_spacy.jsonl"))
+```
+
+We are now in a position to import the data into spaCy to update the machine learning model with Kenya specific data.
+

@@ -3,7 +3,7 @@
 \docType{data}
 \name{stop_words}
 \alias{stop_words}
-\title{Various lexicons for English stop words}
+\title{Various lexicons for English stop words (data)}
 \format{A data frame with 1149 rows and 2 variables:
 \describe{
 \item{word}{An English word}

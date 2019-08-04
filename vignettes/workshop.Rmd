@@ -47,14 +47,14 @@ Gephi is an open source Java based programme. Download the version for your OS f
 When you open Gephi you should see this:
 
 ```{r eval=TRUE, echo=FALSE}
-knitr::include_graphics("~/vignettes/images/gephi1.png")
+knitr::include_graphics("images/gephi1.png")
 ```
 
 
 Click on `Les Miserables.gexf` and  then OK and you should see this network:
 
 ```{r eval=TRUE, echo=FALSE}
-knitr::include_graphics("~/vignettes/images/gephi2.png")
+knitr::include_graphics("images/gephi2.png")
 ```
 
 If you do not see this then you will probably need to either fix the path to your Java installation or reinstall from scratch. To fix this kind of problem follow this thread [https://github.com/gephi/gephi/issues/1787]
@@ -141,7 +141,7 @@ Then use Python as normal. For more experienced users note that you can run pyth
 An example of this working in practice is below. 
 
 ```{r python, eval=TRUE, echo = FALSE}
-knitr::include_graphics("~/vignettes/images/python_demo.png")
+knitr::include_graphics("images/python_demo.png")
 ```
 
 Note that the console is now showing that it is running Python with `>>>` rather than `>` for R. 

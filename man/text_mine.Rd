@@ -50,7 +50,7 @@ title_words <- text_mine(lens, col = "title", top = 20, token = "words", title =
 text_mine(lens, col = "title", top = 20, token = "words", title = "Top Terms in Title", x_label = "Terms", y_label = "Publication Count", viz = TRUE)
 abstract_words <- text_mine(lens, col = "abstract", top = 20, token = "words", title = "Top Terms in Title", x_label = "Terms", y_label = "Publication Count")
 text_mine(lens, col = "abstract", top = 20, token = "words", title = "Top Terms in Title", x_label = "Terms", y_label = "Publication Count", viz = TRUE)
-texts_words <- text_mine(texts, col = "text", top = "20", token = "words", title = "Top Words in Titles and Abstracts", x_label = "Terms", y_label = "Publication Count")
-texts_ngrams <- text_mine(texts, col = "text", top = "20", token = "ngrams", n_gram = 2, title = "Top Words in Titles and Abstracts", x_label = "Terms", y_label = "Publication Count")
+texts_words <- text_mine(texts, col = "text", top = 20, token = "words", title = "Top Words in Titles and Abstracts", x_label = "Terms", y_label = "Publication Count")
+texts_ngrams <- text_mine(texts, col = "text", top = 20, token = "ngrams", n_gram = 2, title = "Top Words in Titles and Abstracts", x_label = "Terms", y_label = "Publication Count")
 }
 }

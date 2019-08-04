@@ -3,7 +3,7 @@
 \docType{data}
 \name{kenya_places}
 \alias{kenya_places}
-\title{Kenya places}
+\title{Kenya places (data)}
 \format{{
 A data frame with 29598 observations on the following 21 variables.
 \describe{

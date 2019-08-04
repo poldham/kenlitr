@@ -3,7 +3,7 @@
 \docType{data}
 \name{lens_fos}
 \alias{lens_fos}
-\title{Fields of Study for Publications about Kenya (Lens data)}
+\title{Fields of Study for Publications about Kenya (Lens data) (data)}
 \format{{
 \describe{
 \item{\code{lens_id}}{character}

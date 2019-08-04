@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
 Kenlit is a dataset of open access data for scientific publications from or about Kenya. 
@@ -23,7 +23,7 @@ The idea behind Kenlit is to capture the universe of scientific publications fro
 The Lens provides access to data from over 190 million scientific publications. To create the general data for Kenya (see lens.csv or lens.rda) a simple search for the word Kenya was carried out across all fields in the Lens. At the time when Kenlit was created this led to 176,335 results. This had increased to 191,952 as of the end of July 2019. We can see the search results from July 29th 2019 below.
 
 ```{r lens_result, echo=FALSE}
-knitr::include_graphics("~/vignettes/images/kenya_lens.png")
+knitr::include_graphics("images/kenya_lens.png")
 ```
 
 The Lens includes data from a range of different sources inclucing Microsoft Academic Graph, Crossref, PubMed, Core and PubMed Central. We can clearly see above that the dominant data source is Microsoft Academic Graph. 
@@ -39,7 +39,7 @@ Data from the Lens presently has the important limitation that the author affili
 
 
 ```{r lens_institutions, echo=FALSE}
-knitr::include_graphics("~/vignettes/images/kenya_institutions.png")
+knitr::include_graphics("images/kenya_institutions.png")
 ```
 
 In considering this image note that the affiliation data, which comes from Microsoft Academic Graph, is limited in its coverarge producing the problem of missing data. Also note that in the Lens and in Kenlit, the affiliation data is limited to those organisations that appear in the Global Research Identifier Database (GRID). GRID addresses the problem of variations in the name of institutions but presently covers 99,000 organisations worldwide and is a work in progress. 
