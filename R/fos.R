@@ -1,4 +1,4 @@
-#' @title Fields of Study for Publications From Kenya (MAG) data
+#' @title Fields of Study for Publications From Kenya (MAG) (data)
 #' @description Fields of Study linked to publications by Kenyan organisations appearing in Microsoft Academic Graph
 #' @details  Data in this table only refers to fields of study for publications linked to organisations in Kenya. For the wider fields of study see lens_fos.
 #' @usage data("fos")

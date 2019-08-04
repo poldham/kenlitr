@@ -1,4 +1,4 @@
-#' @title authors data
+#' @title authors (data)
 #' @description Authors table containing author names, paperid, authorid and original affiliations
 #' @usage data("authors")
 #' @aliases authors 

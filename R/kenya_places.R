@@ -1,4 +1,4 @@
-#' @title Kenya places
+#' @title Kenya places (data)
 #' @description The geonames dataset for Kenya listing 29,598 place names in Kenya with coordinates.
 #' @usage data("kenya_places")
 #' @format{

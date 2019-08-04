@@ -1,4 +1,4 @@
-#' @title lens data
+#' @title lens data for Kenya (data)
 #' @description Lens literature (scholar) data for a search for Kenya in full texts (all fields)
 #' @usage data("lens")
 #' @format{

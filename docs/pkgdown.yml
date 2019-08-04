@@ -3,5 +3,6 @@ pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
   creating_kenlit: creating_kenlit.html
+  text_mining: text_mining.html
   workshop: workshop.html
 

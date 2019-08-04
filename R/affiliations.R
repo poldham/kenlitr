@@ -1,4 +1,4 @@
-#' @title affiliations data
+#' @title affiliations (data)
 #' @description A joint table containing the affiliation data for MAG (for Kenyan organisations) and the Lens (other publications referencing Kenya)
 #' @usage data("affiliations")
 #' @aliases affiliations

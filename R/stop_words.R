@@ -1,4 +1,4 @@
-#' Various lexicons for English stop words
+#' Various lexicons for English stop words (data)
 #'
 #' Copied directly from the tidyvext package stop_words function at
 #' https://github.com/juliasilge/tidytext/blob/master/R/stop_words.R. 

@@ -9,7 +9,8 @@
 #' @return plot
 #' @export
 #'
-#' @examples \dontrun{stacked_bar(affiliations, col = "normalizedname", top = 10, title = "Papers by Affiliation", x_label = "Affiliation", y_label = "Publication Count")}
+#' @examples \dontrun{stacked_bar(affiliations, col = "normalizedname", top = 10, 
+#' title = "Papers by Affiliation", x_label = "Affiliation", y_label = "Publication Count")}
 stacked_bar <- function(x, col = NULL, top = NULL, title = NULL, x_label = NULL, y_label = NULL){
   x %>% 
     select(.data[[col]]) %>%
